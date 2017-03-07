@@ -188,30 +188,34 @@
 		.new{
 			@extend .shadow;
 			padding-bottom: 1em;
-			// height: 500px;
+			height: 55rem;
 		}
 		figure{
 			figcaption{
 				@extend .paddingNews;
 				background-image: url('../img/trame_footer.png');
 				padding-bottom: 1em;
-				// overflow: hidden;
-				// text-overflow: ellipsis;
-				// white-space: nowrap;
-				// // height: 50px;
+				height: 10rem;
 				h2{
 					@extend .mainTitleFont;
 					padding-top: 0.5em;
+					// overflow: hidden;
+					// text-overflow: ellipsis;
+					// white-space: nowrap;
 				}
 				time{
 					@extend .mainFont;
+
 				}
 			}
-
-			img{
-				padding: $mainNewsImgPadding;
-				// height: $mainNewsImgSize	Height;
-				// max-width: $mainNewsImgSizeWidth;
+			.vertical-center{
+				height: 300px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				img{
+					padding: $mainNewsImgPadding;
+				}
 			}
 		}
 		.description{
@@ -219,7 +223,7 @@
 			@extend .paddingNews;
 			margin: 0 1rem 1.5rem 1rem;
 			overflow: hidden;
-			height: 9rem;
+			height: 7rem;
 		}
 
 		a{
