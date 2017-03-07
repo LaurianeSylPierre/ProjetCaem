@@ -97,8 +97,6 @@
 	#header-img{
 		padding-top: 2rem;
 		height: 35rem;
-//		background:  url("../img/trame_header.png"), url("img/header.jpg") top no-repeat;
-//		background-size: auto, cover;
 	}
 
 	#header-img2
@@ -190,13 +188,17 @@
 		.new{
 			@extend .shadow;
 			padding-bottom: 1em;
-			height: 500px;
+			// height: 500px;
 		}
 		figure{
 			figcaption{
 				@extend .paddingNews;
 				background-image: url('../img/trame_footer.png');
 				padding-bottom: 1em;
+				// overflow: hidden;
+				// text-overflow: ellipsis;
+				// white-space: nowrap;
+				// // height: 50px;
 				h2{
 					@extend .mainTitleFont;
 					padding-top: 0.5em;
@@ -208,8 +210,8 @@
 
 			img{
 				padding: $mainNewsImgPadding;
-				height: $mainNewsImgSizeHeight;
-				max-width: $mainNewsImgSizeWidth;
+				// height: $mainNewsImgSize	Height;
+				// max-width: $mainNewsImgSizeWidth;
 			}
 		}
 		.description{

@@ -103,10 +103,18 @@ class Article extends Model
 
     }
 
+    /*
+    * return 4 feature
+    */
+    public function scopeFeature($query){
+
+      return $query->where('featured', 1)->orderBy('date','desc')->take(4);
+    }
+
     public function scopeFutureActualities($query){
 
       $date = Carbon::parse('today')->addWeeks(2);
-      return $query->where('date','>=',$date);
+      return $query->where('date','>=',$date)->orderBy('date','desc');
     }
 
     public function scopeActualities($query){
@@ -114,7 +122,8 @@ class Article extends Model
       $maxDate = Carbon::parse('today')->addWeeks(2);
       $date = Carbon::parse('today');
       return $query->where('date','<=',$maxDate)
-            ->where('date','>=',$date);
+            ->where('date','>=',$date)
+            ->orderBy('date','desc');
     }
 
     public function scopeOldActualities($query){
@@ -122,7 +131,7 @@ class Article extends Model
       $minDate = Carbon::parse('today')->subWeeks(7);
       $date = Carbon::parse('today');
       return $query->where('date','>=',$minDate)
-      ->where('date','<=',$date);
-      return $query;
+      ->where('date','<=',$date)
+      ->orderBy('date','desc');
     }
   }

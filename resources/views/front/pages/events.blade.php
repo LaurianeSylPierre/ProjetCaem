@@ -41,7 +41,7 @@ CAEM - Évenements
 							<figure>
 								<figcaption >
 									<h2>{{ $actuality->title }}</h2>
-									<time datetime="{{ $actuality->date }}">{{ $typeActuality->formatDate }}</time>
+									<time datetime="{{ $actuality->date }}">{{ $actuality->formatDate }}</time>
 								</figcaption>
 								<img class="img-responsive center-block" src="{{ url('images/300/'.str_replace("/","@",$actuality->image)) }}" alt="">
 							</figure>

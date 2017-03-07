@@ -54,9 +54,9 @@ CAEM - École de musique
 					<figure>
 						<figcaption >
 							<h2>{{ $actuality->title }}</h2>
-							<time datetime="{{ $actuality->date }}">{{ $typeActuality->formatDate }}</time>
+							<time datetime="{{ $actuality->date }}">{{ $actuality->formatDate }}</time>
 						</figcaption>
-  						<img class="img-responsive center-block" src="{{ url('images_resize/1000/'.str_replace("/","@",$actuality->image)) }}" alt="">
+  						<img class="img-responsive center-block" src="{{ url('images_fit/250x300/'.str_replace("/","@",$actuality->image)) }}" alt="">
 					</figure>
 					<div class="description">
 						{!! $actuality->content !!}
