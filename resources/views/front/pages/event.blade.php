@@ -38,7 +38,7 @@ CAEM - Évenements
   		<div class="description">
   			{!! $event->content !!}
   		</div>
-      <div class="col-sm-12 share text-center">
+      <div class="col-sm-12 share">
         <!-- Your share button code -->
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ str_replace('http://', 'https://', Request::url()) }}" title="Partager sur Facebook" target="_blank" class="button"><img src="{{ asset('images/facebook_logo.svg')}}" alt=""> Facebook</a>
         <!-- Your share button code -->
@@ -50,7 +50,7 @@ CAEM - Évenements
         data-via="caembesancon"
         data-related="caembesancon">
         <img src="{{ asset('images/twitter_logo.svg')}}" />
-        Tweet</a>
+        Twitter</a>
       </div>
   	</div>
   </section>
