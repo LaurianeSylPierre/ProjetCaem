@@ -1,16 +1,16 @@
-<!--CALLING THE DEFAULT LAYOUT-->
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.errors')
-<!------------------------------>
+{{------------------------------}}
 
 
-<!--HEAD TITLE :-->
+{{--HEAD TITLE :--}}
 @section('pageTitle')
 CAEM - 404
 @endsection
-<!---------------->
+{{----------------}}
 
 
-<!--MAIN CONTENT :-->
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="main404">
 
@@ -24,4 +24,4 @@ CAEM - 404
 
 </main>
 @endsection
-<!------------------>
+{{------------------}}

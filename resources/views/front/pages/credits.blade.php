@@ -1,15 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
 
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - Crédits
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Crédits'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container mainCredits">
 	<h2>Contenu :</h2><p>Lucie Anaclet</p>
@@ -26,3 +41,4 @@ CAEM - Crédits
 	<img src="{{ url('images/200x200/item-02.png') }}">
 </main>
 @endsection
+{{------------------}}

@@ -1,14 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
+
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - L'équipe
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Équipe'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container mainEquipe">
 
@@ -24,9 +40,9 @@ CAEM - L'équipe
 
 				<figure>
 					@if($professeur->picture != null)
-					<img src="uploads/{{ $professeur->picture }}">
+					<img src="{{ url('images_fit/250x250/'.str_replace('/','@',$professeur->picture)) }}">
 					@else
-					<img src="uploads/photo_team/placeholder.png">
+					<img src="{{ asset('images/placeholder.png')}}">
 					@endif
 				</figure>
 
@@ -54,9 +70,9 @@ CAEM - L'équipe
 
 				<figure>
 					@if($bureau->picture != null)
-					<img src="uploads/{{ $bureau->picture }}">
+					<img src="{{ url('images_fit/250x250/'.str_replace('/','@',$bureau->picture)) }}">
 					@else
-					<img src="uploads/photo_team/placeholder.png">
+					<img src="{{ asset('images/placeholder.png')}}">
 					@endif
 				</figure>
 
@@ -83,9 +99,9 @@ CAEM - L'équipe
 			<article>
 				<figure>
 					@if($administration->picture != null)
-					<img src="uploads/{{ $administration->picture }}">
+					<img src="{{ url('images_fit/250x250/'.str_replace('/','@',$administration->picture)) }}">
 					@else
-					<img src="uploads/photo_team/placeholder.png">
+					<img src="{{ asset('images/placeholder.png')}}">
 					@endif
 				</figure>
 
@@ -104,10 +120,11 @@ CAEM - L'équipe
 	<section class="col-md-12">
 		<h2>Autres membres</h2>
 		@foreach($autres as $autre)
-		<h3>{{ $autre->firstname }} {{ $autre->name }}</p>
+		<h3>{{ $autre->firstname }} {{ $autre->name }}</h3>
 		@endforeach
 	</section>
 
 
 </main>
 @endsection
+{{------------------}}

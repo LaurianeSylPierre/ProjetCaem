@@ -1,14 +1,41 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
+
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - Contactez-nous
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD LEAFLET :--}}
+@section('leaflet')
+<!--LEAFLET-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+@endsection
+{{------------------}}
+
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Contact'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container mainContact">
 
@@ -36,8 +63,12 @@ CAEM - Contactez-nous
 
 </main>
 @endsection
+{{------------------}}
 
 
+
+
+{{--SCRIPT RELATED TO THE PAGE :--}}
 @section('pageScript')
 <script>
 
@@ -59,3 +90,4 @@ CAEM - Contactez-nous
 
 </script>
 @endsection
+{{------------------}}

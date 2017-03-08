@@ -5,14 +5,16 @@
 	<meta name="description" content="École de musique à Besançon" />
 	<link rel="icon" type="image/png" href="{{ asset('images/caem_favicon.png')}}" />
 
-    <title>@yield('pageTitle', 'CAEM - Ecole de musique')</title>
+    <title>
+    @yield('pageTitle', 'CAEM - Ecole de musique')
+    </title>
+
+
     @section('ogtags')
         @include('front.includes.og_tags')
     @show
 
-	<!--LEAFLET-->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	@yield('leaflet')
 
 	<!--STYLESHEET-->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">

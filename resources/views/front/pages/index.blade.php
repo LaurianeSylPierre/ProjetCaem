@@ -1,17 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
 
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
-CAEM - INDEX
+CAEM - École de musique
 @endsection
+{{------------------}}
 
 
 
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Accueil'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container">
 
@@ -41,10 +54,12 @@ CAEM - INDEX
 					<figure>
 						<figcaption >
 							<h2>{{ $actuality->title }}</h2>
-							<time datetime="{{ $actuality->date }}">{{ $typeActuality->formatDate }}</time>
+							<time datetime="{{ $actuality->date }}">{{ $actuality->formatDate }}</time>
 						</figcaption>
-  						<img class="img-responsive center-block" src="{{ url('images/250/'.str_replace("/","@",$actuality->image)) }}" alt="">
-					</figure>
+            <div class="vertical-center">
+              <img class="img-responsive center-block" src="{{ url('images_resize/263/'.str_replace("/","@",$actuality->image)) }}" alt="">
+            </div>
+          </figure>
 					<div class="description">
 						{!! $actuality->content !!}
 					</div>
@@ -60,3 +75,4 @@ CAEM - INDEX
 <!--END NEWS -->
 </main>
 @endsection
+{{------------------}}

@@ -1,14 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
+
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - Évenements
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Évenements'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container">
 
@@ -25,9 +41,11 @@ CAEM - Évenements
 							<figure>
 								<figcaption >
 									<h2>{{ $actuality->title }}</h2>
-									<time datetime="{{ $actuality->date }}">{{ $typeActuality->formatDate }}</time>
+									<time datetime="{{ $actuality->date }}">{{ $actuality->formatDate }}</time>
 								</figcaption>
-								<img class="img-responsive center-block" src="{{ url('images/300/'.str_replace("/","@",$actuality->image)) }}" alt="">
+                <div class="vertical-center">
+                  <img class="img-responsive center-block" src="{{ url('images_resize/263/'.str_replace("/","@",$actuality->image)) }}" alt="">
+                </div>
 							</figure>
 							<div class="description">
 								{!! $actuality->content !!}
@@ -44,3 +62,4 @@ CAEM - Évenements
 		@endforeach
 </main>
 @endsection
+{{------------------}}

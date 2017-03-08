@@ -1,14 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
+
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - Tarifs &amp; Inscriptions
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Tarifs'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="mainTarifs container">
 
@@ -66,24 +82,4 @@ CAEM - Tarifs &amp; Inscriptions
 
 </main>
 @endsection
-<!--	<section id="sectionTarifsFormules" class="row">
-
-		<h2>Les formules :</h2>
-
-		<article class="col-md-6">
-			<div>
-				<h3>La Formule - 26 ans</h3>
-				<p>Cours d’instrument en groupe + Atelier de groupe* ou atelier thématique (* 1h / à partir de 10 ans / pratique de musiques actuelles avec des jeunes qui jouent d'autres instruments / 4 à 7 personnes)</p>
-				<h4>42 €/mois (504 € l'année)</h4>
-			</div>
-		</article>
-
-		<article class="col-md-6">
-			<div>
-				<h3>La Formule adulte</h3>
-				<p>Cours d’instrument en groupe + Atelier thématique 1h30 ou 2h selon le nombre d'inscrits</p>
-				<h4>environ 50 €/mois (selon atelier)</h4>
-			</div>
-		</article>
-
-	</section>-->
+{{------------------}}

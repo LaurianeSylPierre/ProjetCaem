@@ -1,15 +1,30 @@
+{{----CALLING THE DEFAULT LAYOUT--}}
 @extends('front.layouts.default')
+{{--------------------------------}}
 
 
+
+
+{{---HEAD TITLE :---}}
 @section('pageTitle')
 CAEM - Mon parcours musical
 @endsection
+{{------------------}}
 
+
+
+
+{{--HEAD OGTAGS :--}}
 @section('ogtags')
     @include('front.includes.og_tags', ['title' => 'CAEM Besançon École de musique - Mon parcours musical'])
 		{{-- you can precise title, type, url, image, description--}}
 @stop
+{{------------------}}
 
+
+
+
+{{--MAIN CONTENT :--}}
 @section('pageContent')
 <main class="container mainParcoursMusical">
 
@@ -62,13 +77,6 @@ CAEM - Mon parcours musical
 					<p>{{ $activity->when }}</p>
 				</div>
 
-<!--
-				<div class="col-md-4">
-					<h4>Avec qui ?</h4>
-					<p>{{ $activity->person }}</p>
-				</div>
--->
-
 				<div class="col-md-6">
 					<h4>Tarifs :</h4>
 					<p>{{ $activity->price }}</p>
@@ -77,11 +85,11 @@ CAEM - Mon parcours musical
 				<figure class="col-md-12">
 
 					<div class="col-md-6 center-block">
-						<img src="{{ url('images/400/'.str_replace("/","@",$activity->picture_1)) }}" />
+						<img src="{{ url('images_fit/400x200/'.str_replace("/","@",$activity->picture_1)) }}" />
 					</div>
 
 					<div class="col-md-6 center-block">
-						<img src="{{ url('images/400/'.str_replace("/","@",$activity->picture_2)) }}" />
+						<img src="{{ url('images_fit/400x200/'.str_replace("/","@",$activity->picture_2)) }}" />
 					</div>
 
 				</figure>
@@ -97,7 +105,12 @@ CAEM - Mon parcours musical
 
 </main>
 @endsection
+{{------------------}}
 
+
+
+
+{{--SCRIPT RELATED TO THE PAGE :--}}
 @section('pageScript')
 <script>
 
@@ -132,3 +145,4 @@ function displayActivity()
 	}
 	</script>
 @endsection
+{{------------------}}

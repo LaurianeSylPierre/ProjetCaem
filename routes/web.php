@@ -12,22 +12,70 @@ Route::get('credits', 'Front\PagesController@credits');
 Route::get('mentions_legales', 'Front\PagesController@legacy_mention');
 Route::get('contact', 'Front\PagesController@contact');
 
-// Images
-Route::get('/images/{size}/{name}', function($size = NULL, $name = NULL){
-    if(!is_null($size) && !is_null($name)) {
-
+// Images resize
+Route::get('/images_resize/{size}/{name}', function($size = NULL, $name = NULL)
+{
+    if(!is_null($size) && !is_null($name))
+	{
         $size = explode('x', $size);
 
         $name = str_replace('uploads@','',$name);
         $name = str_replace('@','/',$name);
 
-        $cache_image = Image::cache(function($image) use($size, $name){return $image->make(url('uploads/'.$name))->resize($size[0], null,
+        $cache_image = Image::cache(function($image) use($size, $name){return $image->make(url('uploads/'.$name))->resize(null, $size[0],
           function ($constraint) {
           $constraint->aspectRatio();
         });}, 10); // cache for 10 minutes
 
         return Response::make($cache_image, 200, ['Content-Type' => 'image']);
-  } else {
+  	}
+
+	else
+	{
+        abort(404);
+    }
+});
+
+
+// Images fit
+Route::get('/images_fit/{size}/{name}', function($size = NULL, $name = NULL)
+{
+    if(!is_null($size) && !is_null($name))
+	{
+        $size = explode('x', $size);
+
+        $name = str_replace('uploads@','',$name);
+        $name = str_replace('@','/',$name);
+
+        $cache_image = Image::cache(function($image) use($size, $name){return $image->make(url('uploads/'.$name))->fit($size[0], $size[1]);}, 10); // cache for 10 minutes
+
+        return Response::make($cache_image, 200, ['Content-Type' => 'image']);
+	}
+
+	else
+	{
+        abort(404);
+    }
+});
+
+
+// Images Header
+Route::get('/images_header/{size}/{name}', function($size = NULL, $name = NULL)
+{
+    if(!is_null($size) && !is_null($name))
+	{
+        $size = explode('x', $size);
+
+        $name = str_replace('uploads@','',$name);
+        $name = str_replace('@','/',$name);
+
+        $cache_image = Image::cache(function($image) use($size, $name){return $image->make(url('images/headerbg/'.$name))->fit($size[0], $size[1]);}, 10); // cache for 10 minutes
+
+        return Response::make($cache_image, 200, ['Content-Type' => 'image']);
+	}
+
+	else
+	{
         abort(404);
     }
 });

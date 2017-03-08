@@ -38,7 +38,8 @@
 
 
 
-	<div id="header-img" class="text-center hidden-sm hidden-xs">
+	<div id="header-img" class="text-center hidden-sm hidden-xs" style="background: url({{asset('images/headerbg/trame_header.png')}}), url({{url('images_header/1920x500/header.jpg')}}) no-repeat;
+		background-size: auto, cover;">
 		<a href="/"><img src="{{ asset('images/logo_CAEM.svg')}}" alt="logo CAEM"></a>
 	</div>
 
