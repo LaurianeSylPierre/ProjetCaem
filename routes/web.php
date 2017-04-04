@@ -111,6 +111,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     CRUD::resource('category', 'Admin\CategoryCrudController');
     CRUD::resource('alert', 'Admin\AlertCrudController');
     CRUD::resource('team', 'Admin\TeamCrudController');
+    CRUD::resource('bills', 'Admin\BillsCrudController');
 
     // non crud
     Route::get('extract', 'Admin\ExtractController@index');
