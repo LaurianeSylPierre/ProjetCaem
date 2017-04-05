@@ -9,20 +9,24 @@ class Bills extends Model
 {
     use CrudTrait;
 
+
+
     protected $fillable = [
         'price',
         'date',
         'type_payment_id'
     ];
-    //
-	// // public function type_payment()
-    // // {
-    // //     return $this->belongsTo('App\Models\Type_payment');
-    // // }
-    //
-    // public function payments_people()
-    // {
-    //     return $this->belongsToMany('App\Models\Person', 'payments_people','payment_id','person_id');
-    // }
+
+    public function products(){
+        return $this->hasMany('App\Models\Produit.php');
+    }
+
+    public function person(){
+        return $this->hasMany('App\Models\Person.php');
+    }
+
+    public function member_activities(){
+        return $this->hasMany('App\Models\Member_activity.php');
+    }
 
 }
