@@ -34,6 +34,7 @@
 
             <li class="header">{{ trans('PAIEMENTS') }}</li>
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/payment') }}"><i class="fa fa-money"></i> <span>Paiement</span></a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/payment') }}"><i class="fa fa-money"></i> <span>Facture</span></a></li>
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/type_payment') }}"><i class="fa fa-credit-card"></i> <span>Type de paiement</span></a></li>
 
             <li class="header">{{ trans('SITE INTERNET') }}</li>
