@@ -14,4 +14,8 @@ class Member_activity extends Model
         return $this->belongsToMany('App\Models\Activity', 'member_activities','activity_id','person_id');
     }
 
+    public function bills(){
+        return $this->belongsTo('App\Models\Bills');
+    }
+
 }

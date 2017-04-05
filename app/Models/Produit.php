@@ -9,7 +9,7 @@ class Produit extends Model
 {
     use CrudTrait;
 
-  
+
 		  protected $fillable = [
         'name',
         'price',
@@ -17,9 +17,12 @@ class Produit extends Model
     ];
 
 
-   
+
  public function activity(){
         return $this->belongsTo('App\Models\Activity');
     }
-  
+
+    public function bills(){
+        return $this->belongsTo('App\Models\Bills');
+    }
 }

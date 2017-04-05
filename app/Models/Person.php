@@ -9,22 +9,22 @@ use Carbon\Carbon;
 class Person extends Model
 {
     use CrudTrait;
-   
+
     protected $fillable = [
         'gender',
-        'name', 
-        'family_name', 
-        'mail', 
-        'tel_fix', 
-        'tel_mob', 
-        'postal_code', 
-        'adress', 
-        'birthday', 
+        'name',
+        'family_name',
+        'mail',
+        'tel_fix',
+        'tel_mob',
+        'postal_code',
+        'adress',
+        'birthday',
         'observation',
         'code_analytique',
-        'image_right', 
-        'city_id', 
-        'district_id', 
+        'image_right',
+        'city_id',
+        'district_id',
         'familly_id',
         'status'
     ];
@@ -52,7 +52,7 @@ class Person extends Model
     public function type_people()
     {
         return $this->belongsToMany('App\Models\Type_person', 'people_types_people','person_id','type_person_id');
-       
+
     }
 
     public function membership()
@@ -60,15 +60,15 @@ class Person extends Model
         return $this->belongsTo('App\Models\Membership');
     }
 
-	public function getFullNameAttribute() 
+	public function getFullNameAttribute()
     {
    		return $this->family_name.' '.$this->name;
     }
-    
+
     public function instruments()
     {
         return $this->belongsToMany('App\Models\Instrument', 'people_instruments','person_id','instrument_id');
-        
+
     }
 
     public function getyearsold()
@@ -80,6 +80,10 @@ class Person extends Model
     public function people_activities()
     {
         return $this->belongsToMany('App\Models\Activity', 'member_activities','person_id','activity_id');
+    }
+
+    public function bills(){
+        return $this->belongsTo('App\Models\Bills');
     }
 
 }
