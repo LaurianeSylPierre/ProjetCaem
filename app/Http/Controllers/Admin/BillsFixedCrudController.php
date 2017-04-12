@@ -96,6 +96,8 @@ class BillsFixedCrudController extends CrudController
             ]);
 
 
+    $this->crud->enableExportButtons();
+
 
     }
 
@@ -253,4 +255,6 @@ class BillsFixedCrudController extends CrudController
     {
 
     }
+
+    $this->crud->enableExportButtons();
 }
