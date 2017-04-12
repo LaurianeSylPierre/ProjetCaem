@@ -142,6 +142,7 @@ class BillsFixedCrudController extends CrudController
         $activities_prices = '';
         $total = '';
         $activities_types = '';
+        $activity_type_names = '';
 
 
         // Première boucle : on récupère les id des activités selon l'id des personnes concernées
@@ -150,6 +151,8 @@ class BillsFixedCrudController extends CrudController
                 // Troisième boucle A :     On récupère les noms des activités pour la variable des activités dans l'insert
                 //                          On récupère les id des types d'activité
                 //                          On utilise les id des types d'activité pour récupérer le type d'activité
+                //                          On fait une demande pour avoir les types d'activité
+                    // Quatrième boucle :     Récupération dans un string des noms d'activité
                 // Troisième boucle B :     On récupère les prix des produits pour la variable des prix dans l'insert
             // Deuxième boucle B : On récupère l'id de facture dynamique pour les garder liées aux factures fixes
         foreach($peoples_individual_id as $rowId){
@@ -162,12 +165,14 @@ class BillsFixedCrudController extends CrudController
                 foreach($activities_infos as $rowActivities){
                     $activities_name .= ''.$rowActivities->name.',';
                     $activities_types .= ''.$rowActivities->type_activity_id.',';
-                    $activity_type = DB::table('types_activities')->where('id', '=', $activities_types_id)->get()->toArray();
-                    // foreach
+                    $activity_type = DB::table('types_activities')->where('id', '=', $rowActivities->type_activity_id)->get();
+                    foreach($activity_type as $rowActivityType){
+                        $activity_type_names .= ''.$rowActivityType->name.',';
+                    }
                 }
                 foreach($activities_produits as $rowIdActi){
                     $activities_prices .= ''.$rowIdActi->price.',';
-                    $total += $activity_price;
+                    $total += $rowIdActi->price;
                 }
             }
             foreach($id_bills as $rowIdBills){
@@ -175,68 +180,15 @@ class BillsFixedCrudController extends CrudController
             }
         }
 
+        $activities_types_table = explode(",", $activities_types);
+        array_pop($activities_types_table);
+        $activity_type_names_table = explode(",", $activity_type_names);
+        array_pop($activity_type_names_table);
+        $activities_id_table = explode(",", $activities_id);
+        array_pop($activities_id_table);
 
         $reductions = '';
         $age = '';
-
-        $activities_types_table = explode(",", $activities_types);
-        array_pop($activities_types_table);
-
-        print_r($activities_types_table);
-
-        // for($q = 0 ; count($peoples_individual_id) > $q; $q++){
-        //     $individual = $peoples_individual_id[$q];
-        //     $birthday = DB::table('people')->where('id', '=', $individual)->get();
-        //     foreach($birthday as $rowBirthday){
-        //         $birthdate = $rowBirthday->birthday;
-        //         $actual_date = date('Y-m-d');
-        //         $age .= $birthdate - $actual_date;
-        //     }
-        // }
-        //     $ages = explode("-", $age);
-
-        //if ((in_array("toto", $les_activite) || in_array("titi", $les_activite)) && in_array("cours", $les_activite))
-
-        echo count($activities_types_table)."<br>";
-
-        // foreach($peoples_individual_id as $individuals_id){
-        //     $birthday = DB::table('people')->where('id', '=', $individuals_id)->get();
-        //     foreach($birthday as $rowBirthday){
-        //         $birthdate = $rowBirthday->birthday;
-        //         $actual_date = date('Y-m-d');
-        //         $age .= $birthdate - $actual_date;
-        //     }
-        //     echo("PErsonne  ------------------<br>");
-        //
-        //         for($n = 0; $n < count($activities_types_table) ; $n++){
-        //             $activity_type = DB::table('types_activities')->where('id', '=', $activities_types_table[$n])->get();
-        //
-        //             foreach($activity_type as $rowActivityType){
-        //                 echo $rowActivityType->name."<br><br>";
-        //                 if($rowActivityType->name == "Expression Corporelle" || $rowActivityType->name == "Pratiques collectives" ){
-        //                     for($p = 0 ; $p < sizeof($activities_types_table) ; $p++){
-        //                         $activity_type = DB::table('types_activities')->where('id', '=', $activities_types_table[$p])->get();
-        //                         foreach($activity_type as $rowActivityType2){
-        //                             if($rowActivityType2->name == "cours"){
-        //                                 $reductions = '50%';
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //                 elseif($rowActivityType->name == "Ateliers thématiques" && $age < '26'){
-        //                     for($o = 0 ; $o < sizeof($activities_types_table) ; $o++){
-        //                         $activities_types_id = $activities_types_table[$o];
-        //                         $activity_type = DB::table('types_activities')->where('id', '=', $activities_types_id)->get();
-        //                         foreach($activity_type as $rowActivityType2){
-        //                             if($rowActivityType2->name == "cours"){
-        //                                 $reductions = '50%';
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
 
         foreach($peoples_individual_id as $individuals_id){
             $birthday = DB::table('people')->where('id', '=', $individuals_id)->get();
@@ -247,43 +199,54 @@ class BillsFixedCrudController extends CrudController
             }
 
 
-            if(in_array("Expression Corporelle", (array)$activity_type[0]) || in_array("Pratiques collectives", (array)$activity_type[0]) && in_array("cours", (array)$activity_type[0])){
-                $reductions = '50%';
+            if(in_array("Expression Corporelle", (array)$activity_type[0]) && in_array("cours", (array)$activity_type[0])){
+                $reductions .= '-50%';
             }
-            elseif(in_array("Ateliers thématiques", (array)$activity_type[0]) && in_array("cours", (array)$activity_type[0]) && $age < '-26'){
-                $reductions = '50%';echo $reductions;
+            elseif(in_array("Pratiques collectives", (array)$activity_type[0])  && in_array("cours", (array)$activity_type[0])){
+                $reductions .= '-50%';
             }
-
-
-            for($n = 0; $n < count($activities_types_table) ; $n++){
-
-                print_r((array)$activity_type[0]);
-                echo "<br><br>";
-                if(in_array("Expression Corporelle", (array)$activity_type[0]) || in_array("Pratiques collectives", (array)$activity_type[0]) && in_array("cours", (array)$activity_type[0])){
-                    $reductions = '50%';
-                }
-                elseif(in_array("Ateliers thématiques", (array)$activity_type[0]) && in_array("cours", (array)$activity_type[0]) && $age < '-26'){
-                    $reductions = '50%';echo $reductions;
-                }
-
+            elseif(in_array("Ateliers thématiques", $activity_type_names_table) && in_array("cours", $activity_type_names_table) && $age > '-26'){
+                $reductions .= '-50%';
             }
         }
 
-        echo $reductions;
+        $activities_products = '';
+
+        if($reductions != ''){
+            foreach($peoples_individual_id as $rowId){
+                $indiv_activities_id = DB::table('member_activities')->select('activity_id')->where('person_id', '=', $rowId)->get();
+                foreach($indiv_activities_id as $rowIdTable){
+                    $activities_produits = DB::table('produits')->where('activity_id', '=', $rowIdTable->activity_id)->get();
+                    foreach($activities_produits as $rowActiProd){
+                        $activities_products .= ''.$rowActiProd->price.',';
+                    }
+                }
+            }
+            $activities_products_table = explode(",", $activities_products);
+            array_pop($activities_products_table);
+            for($i = 0; count($activity_type_names_table) > $i; $i++){
+                $actual_type = $activity_type_names_table[$i];
+                if($actual_type == 'cours'){
+                    ++$i;
+                    $total_reduction = (50/100)*$activities_products_table[$i];
+                    $total -= $total_reduction;
+                }
+            }
+        }
 
         $date = date('Y-m-d h:i:s');
 
-        // DB::table('bills_fixeds')->insert([
-        //     ['bills_id' => $bills_id,
-        //     'peoples_id' => $peoples_id,
-        //     'peoples_name' => $peoples_name,
-        //     'activities_id' => $activities_id,
-        //     'activities_name' => $activities_name,
-        //     'activities_prices' => $activities_prices,
-        //     'reductions' => $reductions,
-        //     'total' => $total,
-        //     'created_at' => $date]
-        // ]);
+        DB::table('bills_fixeds')->insert([
+            ['bills_id' => $bills_id,
+            'peoples_id' => $peoples_id,
+            'peoples_name' => $peoples_name,
+            'activities_id' => $activities_id,
+            'activities_name' => $activities_name,
+            'activities_prices' => $activities_prices,
+            'reductions' => $reductions,
+            'total' => $total,
+            'created_at' => $date]
+        ]);
     }
 
     public function update(UpdateRequest $request)
