@@ -96,7 +96,7 @@ class BillsFixedCrudController extends CrudController
             ]);
 
 
-    $this->crud->enableExportButtons();
+        $this->crud->enableExportButtons();
 
 
     }
@@ -249,12 +249,12 @@ class BillsFixedCrudController extends CrudController
             'total' => $total,
             'created_at' => $date]
         ]);
+
+        return view('vendor.backpack.base.layout');
     }
 
     public function update(UpdateRequest $request)
     {
 
     }
-
-    $this->crud->enableExportButtons();
 }

@@ -34,6 +34,11 @@ class BillsCrudController extends CrudController
         ]);
         $this->crud->addColumn([
             'name' => 'people_id', // The db column name
+            'label' => "Personne id", // Table column heading
+            'type' => 'Text'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'people_name', // The db column name
             'label' => "Personne", // Table column heading
             'type' => 'Text'
         ]);
@@ -140,8 +145,10 @@ class BillsCrudController extends CrudController
         $date = date('Y-m-d h:i:s');
 
         DB::table('bills')->insert([
-            ['people_id' => $id, 'member_activity_id' => $activities, 'price_id' => $prices, 'created_at' => $date]
+            ['people_id' => $id, 'people_name' => ''.$name.' '.$family_name.'', 'member_activity_id' => $activities, 'price_id' => $prices, 'created_at' => $date]
         ]);
+
+        return view('vendor.backpack.base.layout');
     }
 
     public function update(UpdateRequest $request)
@@ -186,5 +193,7 @@ class BillsCrudController extends CrudController
         DB::table('bills')->where('id', $bill_id)->update([
             'member_activity_id' => $activities, 'price_id' => $prices, 'updated_at' => $date
         ]);
+
+        return view('vendor.backpack.base.layout');
     }
 }
